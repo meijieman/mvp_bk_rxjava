@@ -2,7 +2,7 @@ package com.example.commonmvp.main;
 
 import com.example.commonmvp.listener.OnRequestListener;
 
-public interface RequestBiz {
+public interface MainBiz {
 
-    void requestForData(final OnRequestListener listener);
+    void requestForData(final OnRequestListener<String> listener);
 }

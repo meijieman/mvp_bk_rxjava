@@ -4,10 +4,10 @@ import com.example.commonmvp.listener.OnRequestListener;
 
 import java.util.ArrayList;
 
-public class RequestBizImpl implements RequestBiz {
+public class MainBizImpl implements MainBiz {
 
     @Override
-    public void requestForData(final OnRequestListener listener) {
+    public void requestForData(final OnRequestListener<String> listener) {
         new Thread(new Runnable() {
 
             @Override
@@ -24,6 +24,9 @@ public class RequestBizImpl implements RequestBiz {
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    if (listener != null) {
+                        listener.onFailure("发生异常");
+                    }
                 }
             }
         }).start();

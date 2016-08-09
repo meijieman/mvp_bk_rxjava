@@ -27,17 +27,6 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter> implemen
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mListView = (ListView)findViewById(R.id.maim_listview);
-        assert mListView != null;
-        mListView.setOnItemClickListener(mListener);
-        mPb = (ProgressBar)findViewById(R.id.main_loading);
-    }
-
-
-    @Override
     public MainPresenter initPresenter() {
         return new MainPresenter();
     }
@@ -45,7 +34,20 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter> implemen
     @Override
     protected void onResume() {
         super.onResume();
-        mPresenter.onResume();
+        mPresenter.getData();
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    public void init() {
+        mListView = (ListView)findViewById(R.id.maim_listview);
+        assert mListView != null;
+        mListView.setOnItemClickListener(mListener);
+        mPb = (ProgressBar)findViewById(R.id.main_loading);
     }
 
     @Override
@@ -66,6 +68,6 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter> implemen
 
     @Override
     public void showMessage(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        show(msg);
     }
 }

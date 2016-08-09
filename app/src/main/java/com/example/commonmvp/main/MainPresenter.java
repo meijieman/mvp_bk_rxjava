@@ -10,17 +10,18 @@ import java.util.List;
 
 public class MainPresenter extends BasePresenter<MainView> {
 
-    private RequestBiz requestBiz;
+    private MainBiz requestBiz;
 
     private Handler mHandler;
 
     public MainPresenter() {
-        requestBiz = new RequestBizImpl();
+        requestBiz = new MainBizImpl();
         mHandler = new Handler(Looper.getMainLooper());
     }
 
-    public void onResume() {
-        requestBiz.requestForData(new OnRequestListener() {
+    public void getData() {
+        mView.showLoading();
+        requestBiz.requestForData(new OnRequestListener<String>() {
 
             @Override
             public void onSuccess(final List<String> data) {
@@ -35,12 +36,12 @@ public class MainPresenter extends BasePresenter<MainView> {
             }
 
             @Override
-            public void onFailure() {
+            public void onFailure(final String msg) {
                 mHandler.post(new Runnable() {
 
                     @Override
                     public void run() {
-                        mView.showMessage("����ʧ��");
+                        mView.showMessage(msg);
                     }
                 });
             }
@@ -48,6 +49,6 @@ public class MainPresenter extends BasePresenter<MainView> {
     }
 
     public void onItemClick(int pos) {
-        mView.showMessage("�����item " + pos);
+        mView.showMessage("点击了 item " + pos);
     }
 }

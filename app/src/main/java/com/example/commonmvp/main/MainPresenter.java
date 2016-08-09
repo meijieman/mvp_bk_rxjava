@@ -11,7 +11,6 @@ import java.util.List;
 public class MainPresenter extends BasePresenter<MainView> {
 
     private MainBiz requestBiz;
-
     private Handler mHandler;
 
     public MainPresenter() {

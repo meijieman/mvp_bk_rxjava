@@ -1,13 +1,11 @@
 package com.example.commonmvp.main;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.example.commonmvp.R;
 import com.example.commonmvp.base.BaseActivity;
@@ -16,7 +14,7 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity<MainView, MainPresenter> implements MainView {
 
-    private ListView    mListView;
+    private ListView mListView;
     private ProgressBar mPb;
 
     private OnItemClickListener mListener = new OnItemClickListener() {
@@ -44,10 +42,10 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter> implemen
 
     @Override
     public void init() {
-        mListView = (ListView)findViewById(R.id.maim_listview);
+        mListView = (ListView) findViewById(R.id.maim_listview);
         assert mListView != null;
         mListView.setOnItemClickListener(mListener);
-        mPb = (ProgressBar)findViewById(R.id.main_loading);
+        mPb = (ProgressBar) findViewById(R.id.main_loading);
     }
 
     @Override

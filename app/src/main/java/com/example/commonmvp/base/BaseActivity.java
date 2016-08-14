@@ -3,11 +3,12 @@ package com.example.commonmvp.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
+/**
+ * @Desc: TODO
+ */
 public abstract class BaseActivity<V, T extends BasePresenter<V>> extends AppCompatActivity {
 
-    private static Toast sToast;
     protected T mPresenter;
 
     @Override
@@ -46,15 +47,4 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends AppCom
      * 初始化 presenter
      */
     public abstract T initPresenter();
-
-    /**
-     * toast
-     */
-    protected void show(String msg) {
-        if (sToast == null) {
-            sToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
-        }
-        sToast.setText(msg);
-        sToast.show();
-    }
 }

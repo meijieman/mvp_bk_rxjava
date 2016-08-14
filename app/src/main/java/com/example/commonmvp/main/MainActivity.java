@@ -9,6 +9,7 @@ import android.widget.ProgressBar;
 
 import com.example.commonmvp.R;
 import com.example.commonmvp.base.BaseActivity;
+import com.example.commonmvp.utils.ToastUtil;
 
 import java.util.List;
 
@@ -66,6 +67,6 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter> implemen
 
     @Override
     public void showMessage(String msg) {
-        show(msg);
+        ToastUtil.show(msg);
     }
 }

@@ -2,16 +2,17 @@ package com.example.commonmvp.utils;
 
 import android.util.Log;
 
+import com.example.commonmvp.base.BaseApp;
+
 /**
  * logUtil
  */
 public class LogUtil {
 
-    public static final boolean isDebug = true; // 应放到 Application
-    private static final String TAG = "LogUtils";
+    private static final String TAG = "LogUtil";
 
     public static void e(String msg) {
-        if (!isDebug) {
+        if (!BaseApp.isDebug) {
             return;
         }
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
@@ -27,7 +28,7 @@ public class LogUtil {
     }
 
     public static void d(String msg) {
-        if (!isDebug) {
+        if (!BaseApp.isDebug) {
             return;
         }
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
@@ -40,5 +41,19 @@ public class LogUtil {
             methodInfo = "[" + fileName + "#" + element.getMethodName() + "() Line:" + element.getLineNumber() + "]";
         }
         Log.d(TAG, methodInfo + msg);
+    }
+
+    /**
+     * 打印详细调用栈
+     */
+    public static void m(String msg) {
+        if (BaseApp.isDebug) {
+            StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+            String str = "[debug "
+                         + stackTrace[3].getFileName().replace(".java", "") + "#" + stackTrace[3].getMethodName() + " line:" + stackTrace[3].getLineNumber() + " "
+                         + stackTrace[4].getFileName().replace(".java", "") + "#" + stackTrace[4].getMethodName() + " line:" + stackTrace[4].getLineNumber() + " "
+                         + stackTrace[5].getFileName().replace(".java", "") + "#" + stackTrace[5].getMethodName() + " line:" + stackTrace[5].getLineNumber() + "]";
+            Log.e(TAG, str + msg);
+        }
     }
 }

@@ -16,15 +16,9 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends AppCom
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         mPresenter = initPresenter();
+        mPresenter.attach((V) this);
 
         init();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        mPresenter.attach((V) this);
     }
 
     @Override

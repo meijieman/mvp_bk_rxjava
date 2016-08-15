@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.commonmvp"
-        minSdkVersion 8
+        minSdkVersion 16
         targetSdkVersion 22
     }
 

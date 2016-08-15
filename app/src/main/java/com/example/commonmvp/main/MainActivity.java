@@ -11,12 +11,13 @@ import com.example.commonmvp.R;
 import com.example.commonmvp.base.BaseActivity;
 import com.example.commonmvp.utils.ToastUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends BaseActivity<MainView, MainPresenter> implements MainView {
 
-    private ListView mListView;
     private ProgressBar mPb;
+    private ArrayAdapter<String> mAdapter;
 
     private OnItemClickListener mListener = new OnItemClickListener() {
         @Override
@@ -31,22 +32,19 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter> implemen
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        mPresenter.getData();
-    }
-
-    @Override
     public int getLayoutId() {
         return R.layout.activity_main;
     }
 
     @Override
     public void init() {
-        mListView = (ListView) findViewById(R.id.maim_listview);
-        assert mListView != null;
-        mListView.setOnItemClickListener(mListener);
+        ListView listView = (ListView)findViewById(R.id.maim_listview);
         mPb = (ProgressBar) findViewById(R.id.main_loading);
+        assert listView != null;
+        mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<String>());
+        listView.setAdapter(mAdapter);
+        listView.setOnItemClickListener(mListener);
+        mPresenter.getData();
     }
 
     @Override
@@ -61,8 +59,8 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter> implemen
 
     @Override
     public void setListItem(List<String> data) {
-        ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, data);
-        mListView.setAdapter(adapter);
+        mAdapter.clear();
+        mAdapter.addAll(data);
     }
 
     @Override

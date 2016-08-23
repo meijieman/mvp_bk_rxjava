@@ -29,8 +29,10 @@ public class MainPresenter extends BasePresenter<MainView> {
 
                     @Override
                     public void run() {
-                        mView.hideLoading();
-                        mView.setListItem(data);
+                        if (mView != null) {
+                            mView.hideLoading();
+                            mView.setListItem(data);
+                        }
                     }
                 });
             }

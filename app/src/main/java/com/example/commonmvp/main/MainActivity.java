@@ -45,7 +45,7 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter> implemen
         mAdapter = new MainAdapter(this);
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(mListener);
-        mPresenter.getData();
+        mPresenter.getData1();
     }
 
     @Override
@@ -66,5 +66,11 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter> implemen
     @Override
     public void showMessage(String msg) {
         ToastUtil.show(msg);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.destory();
     }
 }

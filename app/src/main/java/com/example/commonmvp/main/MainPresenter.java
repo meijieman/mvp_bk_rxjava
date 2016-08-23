@@ -5,6 +5,7 @@ import android.os.Looper;
 
 import com.example.commonmvp.base.BasePresenter;
 import com.example.commonmvp.listener.OnRequestListener;
+import com.example.commonmvp.utils.LogUtil;
 
 import java.util.List;
 
@@ -49,5 +50,6 @@ public class MainPresenter extends BasePresenter<MainView> {
 
     public void onItemClick(int pos) {
         mView.showMessage("点击了 item " + pos);
+        LogUtil.w("点击了 item " + pos);
     }
 }

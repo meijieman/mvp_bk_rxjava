@@ -3,7 +3,6 @@ package com.example.commonmvp.main;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -11,13 +10,18 @@ import com.example.commonmvp.R;
 import com.example.commonmvp.base.BaseActivity;
 import com.example.commonmvp.utils.ToastUtil;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
 
 public class MainActivity extends BaseActivity<MainView, MainPresenter> implements MainView {
 
-    private ProgressBar mPb;
-    private ArrayAdapter<String> mAdapter;
+    @BindView(R.id.main_loading)
+    ProgressBar mPb;
+    @BindView(R.id.maim_listview)
+    ListView    mListView;
+
+    private MainAdapter mAdapter;
 
     private OnItemClickListener mListener = new OnItemClickListener() {
         @Override
@@ -38,12 +42,9 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter> implemen
 
     @Override
     public void init() {
-        ListView listView = (ListView)findViewById(R.id.maim_listview);
-        mPb = (ProgressBar) findViewById(R.id.main_loading);
-        assert listView != null;
-        mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<String>());
-        listView.setAdapter(mAdapter);
-        listView.setOnItemClickListener(mListener);
+        mAdapter = new MainAdapter(this);
+        mListView.setAdapter(mAdapter);
+        mListView.setOnItemClickListener(mListener);
         mPresenter.getData();
     }
 
@@ -59,8 +60,7 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter> implemen
 
     @Override
     public void setListItem(List<String> data) {
-        mAdapter.clear();
-        mAdapter.addAll(data);
+        mAdapter.addDatas(data);
     }
 
     @Override

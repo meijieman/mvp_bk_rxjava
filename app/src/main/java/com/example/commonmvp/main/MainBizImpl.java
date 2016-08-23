@@ -14,8 +14,8 @@ public class MainBizImpl implements MainBiz {
             public void run() {
                 try {
                     ArrayList<String> data = new ArrayList<>();
-                    for (int i = 1; i < 16; i++) {
-                        Thread.sleep(500);
+                    for (int i = 0; i < 20; i++) {
+                        Thread.sleep(300);
                         data.add("item " + i);
                     }
 

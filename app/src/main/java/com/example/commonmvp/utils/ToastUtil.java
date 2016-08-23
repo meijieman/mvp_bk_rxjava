@@ -10,6 +10,7 @@ import com.example.commonmvp.base.BaseApp;
 public class ToastUtil {
 
     private static Toast sToast;
+    private static Toast sToastLong;
 
     public static void show(String msg) {
         if (sToast == null) {
@@ -17,5 +18,13 @@ public class ToastUtil {
         }
         sToast.setText(msg);
         sToast.show();
+    }
+
+    public static void showLong(String msg) {
+        if (sToastLong == null) {
+            sToastLong = Toast.makeText(BaseApp.getInstance(), "", Toast.LENGTH_LONG);
+        }
+        sToastLong.setText(msg);
+        sToastLong.show();
     }
 }

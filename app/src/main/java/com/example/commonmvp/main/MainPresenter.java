@@ -5,7 +5,7 @@ import android.os.Looper;
 
 import com.example.commonmvp.base.BasePresenter;
 import com.example.commonmvp.listener.OnRequestListener;
-import com.example.commonmvp.utils.LogUtil;
+import com.example.commonmvp.utils.log.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -70,7 +70,7 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter> implemen
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         mPresenter.destory();
+        super.onDestroy();
     }
 }
